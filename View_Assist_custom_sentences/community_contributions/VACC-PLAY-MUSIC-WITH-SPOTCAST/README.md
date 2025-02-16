@@ -1,12 +1,12 @@
 # View Assist - Play Music with Spotcast
 
-This project provides a pair of Home Assistant blueprints that integrate the [SpotcastV5](https://github.com/fondberg/spotcast/tree/dev) and [ViewAssist](https://github.com/dinki/view_assist_integration) integrations to control Spotify music playback with natural language commands.
+This project provides a pair of Home Assistant blueprints that use the [SpotcastV5](https://github.com/fondberg/spotcast/tree/dev) and [ViewAssist](https://github.com/dinki/view_assist_integration) integrations to control Spotify music playback with natural language commands and expose it to LLMs as a tool with a script.
 
 The blueprints include:
 
 - **Automation Blueprint:**  
   Enables music playback in multiple modes:
-  - **Play DJ (Recently Played):** Plays your recently played songs, emulating a DJ-like experience.
+  - **Play DJ (Recently Played):** Plays your recently played songs.
   - **Play Search (Music Search):** Plays music based on search keywords (e.g., album, artist, playlist, or track name).
   - **Transfer Playback:** Allows you to move the active playback from one area to another. When a specific area is provided, the music plays on that media player, and the corresponding display (satellite) updates accordingly.
 
@@ -20,7 +20,7 @@ The blueprints include:
 
 ## Features
 
-- **Dual Account Support:**  
+- **No premium Spotify account needed**  
   Works with both premium and non-premium Spotify accounts.
 
 - **Playback Modes:**
@@ -32,7 +32,7 @@ The blueprints include:
     Moves the current playback to a specified area/media player.
 
 - **Zone-Based Control:**  
-  When an area is specified (using the `{area}` variable), the automation directs playback to the media player named in the format `media_player.<area>_speaker`. If no area is provided, it defaults to the last active media player on the associated satellite.
+  When an area is specified (using the `{area}` variable), the automation directs playback to the media player named in the format `media_player.<area>_speaker`. If no area is provided, it defaults to the last active media player or default one on the associated satellite.
 
 - **LLM Integration:**  
   The script blueprint exposes the functionality to language model integrations (LLMs) or Home Assistant's built-in conversation agent. **Important:** Do not modify or remove the default English trigger phrases in the automation blueprint. Additional phrases can be added following the same structure.
@@ -42,7 +42,7 @@ The blueprints include:
 ## Prerequisites
 
 - **Home Assistant:**  
-  Ensure you are running a version compatible with blueprints (you may add `min_version: "2024.10.0"` in the blueprint if required).
+  Ensure you are running `min_version: "2024.10.0"` of Home Assistant.
 
 - **Integrations:**
   - [SpotcastV5](https://github.com/fondberg/spotcast/tree/dev)
@@ -112,7 +112,7 @@ The automation blueprint comes with a set of default trigger phrases:
   - "move the music on {area} speaker"  
   - "transfer the music on {area} speaker"
 
-**Important:** Do not modify or remove the default trigger phrases if you plan to use the LLM integration. Additional phrases can be added following the same structure.
+**Important:** Do not modify or remove the default trigger phrases if you plan to use the LLM integration. Additional phrases in another languages can be added following the same structure.
 
 2. **Action Flow:**  
 Depending on the command received, the blueprint will:
